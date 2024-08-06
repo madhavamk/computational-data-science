@@ -18,5 +18,36 @@ using Boosting techniques, that predicts employee attrition
 
 ### Action
 
+- Used isna method from pandas to check if there are any null values, but there were none
+- Identified and separated all numerical and non numerical(categorical) columns
+- Plotted box plot for all numerical data to look for outliers
+- From the BoxPlot, identified the outlier with 'monthlyIncome' feature
+- To handle outliers, used capping method, set the outliers to min/max (np.clip method)
+- Replotted boxplot to validate there were no outliers
+- used value_counts() method to look for various values with the target 'attrition'
+- Observed that the target data was **imbalanced**, with 981 saying Yes, 189 saying NO
+- Plotted pair-plot and heatmap to check for correlated features
+- Dropped features like yearsatcompany, yearsatcurrentrole, etc are correlated and so are working years & joblevel
+- Encoded categorical features like businessTravel, Gender, maritalStatus etc
+- Split the train and test data as 80:20
+- Train and fit CatBoost and XGBoost with default parameters
+- Got accuracy of 0.87.
+
+### Results
+
+- Downloaded Kaggle data and applied the model on that data.
+- The results for the Kaggle test set was ok - 0.85 was the score
+- Tuned hyperparameters for catboost and xgboost with GridSearch
+- Tuned depth, learning_rate, l2_leaf_reg, iterations for catboost
+- Tuned max_depth, learning_rate, min_child_weight, n_estimators for XGBoost
+- But the values for training set did well, but on kaggle test set, it did not improve much
+- Used HyperOpt for fine tuning hyperparameters for both instead of GridSearch
+- Used cat_features parameter for CatBoost to auto-encode/handle the categorical features
+- With 75:25 split for data set, I got better accuracy score - 0.89
+
+### What could have been done
+
+- Could have used SMOTE/CrossValidation/Regularization to handle Imbalance data
+- Could have split the data using stratified split to have some proportions of imbalanced set in all data set
 - 
 
